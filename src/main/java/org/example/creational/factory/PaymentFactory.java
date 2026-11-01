@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class PaymentFactory {
+public class PaymentFactory implements Factory{
     private static final Map<PaymentType, Supplier<Payment>> registry = new HashMap<>();
 
     public static void register(PaymentType paymentType, Supplier<Payment> supplier){
@@ -18,5 +18,10 @@ public class PaymentFactory {
             throw new IllegalArgumentException(" Invalid Payment Type ");
         }
         return supplier.get();
+    }
+
+    @Override
+    public Factory createFactory() {
+        return null;
     }
 }
